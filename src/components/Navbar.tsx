@@ -5,7 +5,7 @@ export const Navbar = () => {
     <>
           <nav className="gamer-navbar">
         <div className="gamer-navbar-logo">
-          <img src="assets/Imagen/level-up.png" alt="Logo gamer" />
+          <img src="/img/level-up.png" alt="Logo gamer" />
           <span>LEVEL-UP GAMER</span>
         </div>
         <input type="checkbox" id="toggle-menu" className="toggle-menu" />
