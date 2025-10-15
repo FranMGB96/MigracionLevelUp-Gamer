@@ -1,16 +1,12 @@
-
+import { HomeCarousel } from '../components/Carousel';
 import { products } from "../data/products";
 
 export const Products = () => {
   return (
     <>
-      <main className="container">
-        <header className="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
-          <div>
-            <h1 className="h3 fw-bold">Productos</h1>
-            <p className="mb-0">Soluciones de informática pensadas para tu negocio.</p>
-          </div>
-        </header>
+      <HomeCarousel />
+      <main className="container mt-5">  
+
 
         <section id="catalogo" className="row g-4">
           {
