@@ -1,9 +1,9 @@
-
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
     <>
-          <nav className="gamer-navbar">
+      <nav className="gamer-navbar">
         <div className="gamer-navbar-logo">
           <img src="/img/level-up.png" alt="Logo gamer" />
           <span>LEVEL-UP GAMER</span>
@@ -15,7 +15,11 @@ export const Navbar = () => {
           <span></span>
         </label>
         <div className="gamer-navbar-content">
-          <button className="close-nav-mobile" id="closeNavMobileBtn" type="button">
+          <button
+            className="close-nav-mobile"
+            id="closeNavMobileBtn"
+            type="button"
+          >
             &times;
           </button>
           <div className="gamer-navbar-search">
@@ -26,12 +30,14 @@ export const Navbar = () => {
               aria-label="Search"
               id="searchInput"
             />
-            <button><i className="fa fa-search"></i></button>
+            <button>
+              <i className="fa fa-search"></i>
+            </button>
           </div>
           <div className="gamer-navbar-actions">
-            <a href="comunidad.html" className="comunidad-btn" id="comunidadBtn">
+            <Link to="/comunidad">
               <i className="fa fa-users"></i> Comunidad
-            </a>
+            </Link>
             <a href="" id="openLoginModal">
               <i className="fa fa-user"></i> Inicia sesión
             </a>
@@ -39,7 +45,11 @@ export const Navbar = () => {
               <i className="fa fa-shopping-cart"></i>
               Carrito (<span id="cart-count">0</span>)
             </a>
-            <div id="cartSidebar" className="offcanvas offcanvas-end" tabIndex={-1}>
+            <div
+              id="cartSidebar"
+              className="offcanvas offcanvas-end"
+              tabIndex={-1}
+            >
               <button className="close-gamer-cart" id="closeCartGamerBtn">
                 &times;
               </button>
@@ -54,13 +64,17 @@ export const Navbar = () => {
               <div className="offcanvas-body">
                 <ul id="cartItems" className="list-group mb-4"></ul>
                 <hr />
-                <p><b>Total:</b> <span id="cartTotal">$0</span></p>
-                <button className="btn btn-success w-100" id="payBtn">Pagar</button>
+                <p>
+                  <b>Total:</b> <span id="cartTotal">$0</span>
+                </p>
+                <button className="btn btn-success w-100" id="payBtn">
+                  Pagar
+                </button>
               </div>
             </div>
           </div>
         </div>
       </nav>
     </>
-  )
-}
+  );
+};
