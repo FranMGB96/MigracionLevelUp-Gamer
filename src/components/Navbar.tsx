@@ -5,8 +5,12 @@ export const Navbar = () => {
     <>
       <nav className="gamer-navbar">
         <div className="gamer-navbar-logo">
-          <img src="/img/level-up.png" alt="Logo gamer" />
-          <span>LEVEL-UP GAMER</span>
+          <Link to="/">
+            <img src="/img/level-up.png" alt="Logo gamer" />
+          </Link>
+          <Link to="/">
+            <span>LEVEL-UP GAMER</span>
+          </Link>
         </div>
         <input type="checkbox" id="toggle-menu" className="toggle-menu" />
         <label htmlFor="toggle-menu" className="hamburger">
