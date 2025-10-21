@@ -217,7 +217,7 @@ export const Comunidad = () => {
           </div>
           <div className="col-md-4 d-flex align-items-center">
             <img
-              src="assets/Imagen/jugaryaprender.png"
+              src="/img/jugaryaprender.png"
               alt="Consejos Gamer"
               className="img-fluid shadow rounded"
               width="400"

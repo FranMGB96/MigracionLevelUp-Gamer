@@ -39,7 +39,7 @@ export const Nosotros = () => {
         </p>
         <div className="text-center mt-4">
           <img
-            src="../img/nosotros.png"
+            src="/img/nosotros.png"
             alt="Comunidad gamer"
             className="img-fluid rounded shadow"
             width="400"
