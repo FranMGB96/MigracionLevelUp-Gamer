@@ -403,6 +403,11 @@ body {
   align-items: center;
   gap: 18px;
 }
+
+/* Mantener las acciones (Comunidad, Inicia sesión, Carrito) alineadas a la derecha */
+.gamer-navbar-actions {
+  margin-left: auto;
+}
 .gamer-navbar-actions a {
   color: #fff;
   background: transparent;

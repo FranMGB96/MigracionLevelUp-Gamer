@@ -123,3 +123,42 @@ body {
     font-size: 1.4rem;
   }
 }
+/* Asegurar que los botones del form de login tengan el mismo tamaño y ancho */
+.form-box-gamer .d-grid .btn,
+.form-box-gamer .d-grid .btn-gamer-profile,
+.form-box-gamer .d-grid .btn-gamer-outline {
+  display: block;
+  width: 100%;        /* ancho completo como antes */
+  min-height: 48px; /* más delgado verticalmente */
+  border-radius: 12px;
+  font-family: "Orbitron", Arial, sans-serif;
+  font-size: 1.15rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+/* Ajustes visuales para que el botón perfil mantenga el borde verde y centrado */
+.btn-gamer-profile {
+  background: #181c33;
+  color: #39ff14;
+  border: 2px solid #39ff14;
+  box-shadow: none;
+}
+
+/* Mantener contraste del botón outline al ocupar todo el ancho */
+.form-box-gamer .d-grid .btn.btn-outline-secondary {
+  background: transparent;
+  color: #7c7c7c;
+  border: 2px solid #484849;
+}
+
+@media (max-width: 540px) {
+  .form-box-gamer .d-grid .btn,
+  .form-box-gamer .d-grid .btn-gamer-profile,
+  .form-box-gamer .d-grid .btn-gamer-outline {
+    min-height: 44px;
+    font-size: 1.0rem;
+    width: 100%; /* en móvil siguen ocupando todo el ancho disponible */
+  }
+}

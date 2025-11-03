@@ -38,6 +38,10 @@ export const Login = () => {
                 <button type="submit" className="btn btn-primary">
                   Ingresar
                 </button>
+                {/* Botón Perfil: aparece debajo de Ingresar */}
+                <Link to="/perfil" className="btn-gamer-profile" role="button">
+                  Perfil
+                </Link>
                 <Link to="/registrar" className="btn btn-outline-secondary">
                   Crear una cuenta
                 </Link>

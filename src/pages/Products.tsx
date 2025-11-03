@@ -1,13 +1,24 @@
 import { HomeCarousel } from "../components/Carousel";
 import { products } from "../data/products";
+import { useSearchParams } from "react-router-dom";
 
 export const Products = () => {
+  const [searchParams] = useSearchParams();
+  const q = searchParams.get("q")?.toLowerCase().trim() ?? "";
+
+  const filtered = q
+    ? products.filter((p) => p.title.toLowerCase().includes(q))
+    : products;
+
   return (
     <>
       <HomeCarousel />
       <main className="container mt-5">
+        {q && filtered.length === 0 && (
+          <p className="lead">No se encontraron productos para "{q}"</p>
+        )}
         <section id="catalogo" className="row g-4">
-          {products.map((p) => (
+          {filtered.map((p) => (
             <div
               key={p.id}
               className="col-12 col-sm-6 col-md-4 col-lg-3"

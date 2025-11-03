@@ -6,6 +6,8 @@ import { Layout } from "./layout/Layout";
 import { ProductDetail } from "./pages/ProductDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import { Login } from "./pages/Login";
+import { Registrar } from "./pages/Registrar";
+import { Perfil } from "./pages/Perfil";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="comunidad" element={<Comunidad />} />
         <Route path="nosotros" element={<Nosotros />} />
           <Route path="login" element={<Login />} />
+          <Route path="registrar" element={<Registrar />} />
+    <Route path="perfil" element={<Perfil />} />
         <Route path="products/:id" element={<ProductDetail/>} />
       </Route>
     </Routes>
