@@ -9,16 +9,21 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const onSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const q = searchTerm.trim();
-    // navigate to home with query param q
+  // Realizar búsqueda en tiempo real
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    const q = value.trim();
+    // Navegar a home con o sin parámetro de búsqueda
     if (q.length > 0) {
       navigate(`/?q=${encodeURIComponent(q)}`);
     } else {
-      navigate(`/`);
+      navigate('/');
     }
-    closeMobileMenu();
+  };
+
+  const onSearch = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevenir envío del formulario
   };
 
   const closeMobileMenu = () => {
@@ -33,7 +38,7 @@ export const Navbar = () => {
             <img src="/img/level-up.png" alt="Logo gamer" />
           </Link>
           <Link to="/">
-            <span>LEVEL-UP GAMER</span>
+            <span>Level-Up Gamers</span>
           </Link>
         </div>
         <input type="checkbox" id="toggle-menu" className="toggle-menu" />
@@ -60,7 +65,7 @@ export const Navbar = () => {
                 aria-label="Search"
                 id="searchInput"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleSearchChange}
               />
               <button type="submit">
                 <i className="fa fa-search"></i>

@@ -1,4 +1,5 @@
 import { HomeCarousel } from "../components/Carousel";
+import { Reviews } from "../components/Reviews";
 import { products } from "../data/products";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
@@ -49,6 +50,7 @@ export const Products = () => {
             </div>
           ))}
         </section>
+        <Reviews />
       </main>
     </>
   );
