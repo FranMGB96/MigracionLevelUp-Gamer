@@ -1,10 +1,11 @@
 import { HomeCarousel } from "../components/Carousel";
 import { products } from "../data/products";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 export const Products = () => {
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q")?.toLowerCase().trim() ?? "";
+  const navigate = useNavigate();
 
   const filtered = q
     ? products.filter((p) => p.title.toLowerCase().includes(q))
@@ -33,7 +34,15 @@ export const Products = () => {
                     currency: "CLP",
                   }).format(p.price)}
                 </p>
-                <button className="agregarCarrito" data-precio={p.price}>
+                <button
+                  type="button"
+                  className="agregarCarrito mt-2"
+                  onClick={() => {
+                    navigate(`/products/${p.id}`);
+                    const cb = document.getElementById("toggle-menu") as HTMLInputElement | null;
+                    if (cb && cb.checked) cb.checked = false;
+                  }}
+                >
                   Ver Detalle
                 </button>
               </div>
