@@ -42,9 +42,9 @@ export const Navbar = () => {
             <Link to="/comunidad">
               <i className="fa fa-users"></i> Comunidad
             </Link>
-            <a href="" id="openLoginModal">
+            <Link to="/login">
               <i className="fa fa-user"></i> Inicia sesión
-            </a>
+            </Link>
             <a href="#" className="cart-btn" id="openCartModal">
               <i className="fa fa-shopping-cart"></i>
               Carrito (<span id="cart-count">0</span>)

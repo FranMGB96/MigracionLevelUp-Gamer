@@ -24,25 +24,27 @@ export const Footer = () => {
             <div className="col-12 col-md-4 mb-4 mb-md-0">
               <h4 className="footer-title">Nosotros</h4>
               <ul className="list-unstyled">
-                <Link to="/nosotros">
-                  <a className="footer-link">Quiénes somos</a>
-                </Link>
+                <li>
+                  <Link to="/nosotros" className="footer-link">
+                    Quiénes somos
+                  </Link>
+                </li>
               </ul>
             </div>
 
             <div className="col-12 col-md-4">
               <h4 className="footer-title">Comunidad Level-UP</h4>
               <ul className="list-unstyled">
-                <Link to="/comunidad">
-                  <li>
-                    <a className="footer-link">Comunidad</a>
-                  </li>
-                </Link>
-                <Link to="/comunidad">
-                  <li>
-                    <a className="footer-link">Redes Sociales</a>
-                  </li>
-                </Link>
+                <li>
+                  <Link to="/comunidad" className="footer-link">
+                    Comunidad
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/comunidad" className="footer-link">
+                    Redes Sociales
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

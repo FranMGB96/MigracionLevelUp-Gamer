@@ -4,17 +4,23 @@ import { Comunidad } from "./pages/Comunidad";
 import { Nosotros } from "./pages/Nosotros";
 import { Layout } from "./layout/Layout";
 import { ProductDetail } from "./pages/ProductDetail";
+import ScrollToTop from "./components/ScrollToTop";
+import { Login } from "./pages/Login";
 
 function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Products />} />  {/* Products como inicio */}
         <Route path="comunidad" element={<Comunidad />} />
         <Route path="nosotros" element={<Nosotros />} />
+          <Route path="login" element={<Login />} />
         <Route path="products/:id" element={<ProductDetail/>} />
       </Route>
     </Routes>
+    </>
   );
 }
 

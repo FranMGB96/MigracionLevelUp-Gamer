@@ -68,7 +68,12 @@ h2 {
   border-radius: 10px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  height: 100%;
+  /* Usar layout flex para distribuir título, imagen, precio y botón
+     y asegurar que el botón quede alineado en la parte inferior */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
 }
 
 .producto:hover {
@@ -81,13 +86,20 @@ h2 {
   height: 200px;
   object-fit: cover;
   border-radius: 5px;
+  margin-top: 12px;
   margin-bottom: 10px;
+  /* Evitar que la imagen cambie el tamaño del contenedor */
+  flex-shrink: 0;
 }
 
 .producto h3 {
   color: #1e90ff;
   font-size: 1.2rem;
   margin: 10px 0;
+  /* Limitar espacio ocupado por el título para mantener uniformidad */
+  line-height: 1.1em;
+  max-height: 2.2em; /* aprox. 2 líneas */
+  overflow: hidden;
 }
 
 .producto p {
@@ -534,4 +546,40 @@ body {
   .close-nav-mobile {
     display: block;
   }
+}
+
+/* --- Disable glow/destello on buttons globally --- */
+/* Esto anula efectos de box-shadow en botones para evitar destellos */
+button,
+.btn,
+.btn-gamer-green,
+.btn-gamer-outline,
+.btn-gamer-profile,
+.btn-categoria,
+.gamer-navbar-actions a,
+.cart-btn {
+  box-shadow: none !important;
+}
+
+button:focus,
+.btn:focus,
+.btn-gamer-green:focus,
+.btn-gamer-profile:focus,
+.btn-gamer-outline:focus,
+.btn-categoria:focus,
+.gamer-navbar-actions a:focus,
+.cart-btn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Si hay sombras aplicadas en hover por selectores específicos, anularlas */
+.btn:hover,
+.btn-gamer-green:hover,
+.btn-gamer-profile:hover,
+.btn-gamer-outline:hover,
+.btn-categoria:hover,
+.gamer-navbar-actions a:hover,
+.cart-btn:hover {
+  box-shadow: none !important;
 }
