@@ -8,6 +8,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { Login } from "./pages/Login";
 import { Registrar } from "./pages/Registrar";
 import { Perfil } from "./pages/Perfil";
+import CarritoPage from "./pages/Carrito";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="registrar" element={<Registrar />} />
     <Route path="perfil" element={<Perfil />} />
         <Route path="products/:id" element={<ProductDetail/>} />
+          <Route path="carrito" element={<CarritoPage />} />
       </Route>
     </Routes>
     </>

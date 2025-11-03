@@ -81,10 +81,10 @@ export const Navbar = () => {
             </Link>
             {!hideControls && (
               <>
-                <a href="#" className="cart-btn" id="openCartModal">
-                  <i className="fa fa-shopping-cart"></i>
-                  Carrito (<span id="cart-count">0</span>)
-                </a>
+                  <Link to="/carrito" className="cart-btn" id="openCartModal" onClick={closeMobileMenu}>
+                    <i className="fa fa-shopping-cart"></i>
+                    Carrito (<span id="cart-count">0</span>)
+                  </Link>
                 <div
                   id="cartSidebar"
                   className="offcanvas offcanvas-end"

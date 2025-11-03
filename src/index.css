@@ -619,3 +619,17 @@ button:focus,
 .cart-btn:hover {
   box-shadow: none !important;
 }
+.gamer-cart-table {
+  background: #181c2e !important;
+  color: #fff !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.gamer-cart-thead {
+  background: #181c2e !important;
+  color: #1e90ff !important;
+}
+.gamer-cart-row {
+  background: #222 !important;
+  color: #fff !important;
+}
