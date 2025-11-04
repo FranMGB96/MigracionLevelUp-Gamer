@@ -97,6 +97,12 @@ h2 {
   flex-shrink: 0;
 }
 
+/* Asegurar que el contenedor .ratio con .rounded recorte la imagen a las
+   esquinas redondeadas y mantenga la alineación correcta con el borde */
+.ratio.rounded {
+  overflow: hidden;
+}
+
 /* Footer dentro de cada tarjeta que contiene precio + botón */
 .producto-footer {
   display: flex;

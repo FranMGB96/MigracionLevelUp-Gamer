@@ -24,16 +24,16 @@ export const ProductDetail = () => {
             <main className="container">
                 <div className="row g-4 mt-4">
                     <div className="col-12 col-lg-6">
-                                    <div className="card border-0">
-                                        <div className="ratio ratio-16x9 bg-body-secondary rounded d-flex align-items-center justify-content-center">
-                                            <img
-                                                src={product.imgSrc}
-                                                alt={product.title}
-                                                className="rounded"
-                                                style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", objectPosition: "center center" }}
-                                            />
-                                        </div>
-                                    </div>
+                                                                            <div className="card border-0">
+                                                                                                                    <div className="ratio ratio-16x9 bg-body-secondary rounded d-flex align-items-center justify-content-center">
+                                                                                                                            <img
+                                                                                                                                    src={product.imgSrc}
+                                                                                                                                    alt={product.title}
+                                                                                                                                    className="rounded"
+                                                                                                                                    style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", objectPosition: "center center" }}
+                                                                                                                            />
+                                                                                                                    </div>
+                                                                                                            </div>
                     </div>
 
                     <div className="col-12 col-lg-6">
