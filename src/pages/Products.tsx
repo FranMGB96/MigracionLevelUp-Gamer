@@ -2,13 +2,15 @@ import { HomeCarousel } from "../components/Carousel";
 import { Reviews } from "../components/Reviews";
 import { products } from "../data/products";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import '../assets/Filtros.css';
 
 export const Products = () => {
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q")?.toLowerCase().trim() ?? "";
   const navigate = useNavigate();
+  const { addItem } = useContext(CartContext);
 
   // Estados para los filtros
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -137,17 +139,32 @@ export const Products = () => {
                     currency: "CLP",
                   }).format(p.price)}
                 </p>
-                <button
-                  type="button"
-                  className="agregarCarrito mt-2"
-                  onClick={() => {
-                    navigate(`/products/${p.id}`);
-                    const cb = document.getElementById("toggle-menu") as HTMLInputElement | null;
-                    if (cb && cb.checked) cb.checked = false;
-                  }}
-                >
-                  Ver Detalle
-                </button>
+                <div className="d-flex flex-column gap-2">
+                  <button
+                    type="button"
+                    className="agregarCarrito"
+                    onClick={() => {
+                      addItem({ id: p.id, title: p.title, price: p.price, imgSrc: p.imgSrc }, 1);
+                      const cb = document.getElementById("toggle-menu") as HTMLInputElement | null;
+                      if (cb && cb.checked) cb.checked = false;
+                      alert('Producto añadido al carrito');
+                    }}
+                  >
+                    Agregar al Carro
+                  </button>
+
+                  <button
+                    type="button"
+                    className="btn-gamer-neon mt-2"
+                    onClick={() => {
+                      navigate(`/products/${p.id}`);
+                      const cb = document.getElementById("toggle-menu") as HTMLInputElement | null;
+                      if (cb && cb.checked) cb.checked = false;
+                    }}
+                  >
+                    Ver Detalle
+                  </button>
+                </div>
               </div>
             </div>
           ))}

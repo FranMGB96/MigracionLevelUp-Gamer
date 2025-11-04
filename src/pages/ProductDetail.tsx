@@ -90,7 +90,7 @@ function AddToCartButton({ product }: { product: any }) {
                     <button className="btn btn-outline-secondary" type="button" onClick={() => setQty((s) => Math.min(5, s + 1))}>+</button>
                 </div>
             </div>
-            <button className="btn btn-dark btn-lg w-50" onClick={() => { addItem({ id: product.id, title: product.title, price: product.price, imgSrc: product.imgSrc }, qty); alert('Producto añadido al carrito'); }}>
+            <button className="agregarCarrito btn-lg w-50" onClick={() => { addItem({ id: product.id, title: product.title, price: product.price, imgSrc: product.imgSrc }, qty); alert('Producto añadido al carrito'); }}>
                 <i className="fa fa-cart-plus me-2"></i> Agregar al Carro
             </button>
         </div>
