@@ -1,5 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+// Importamos el contexto del carrito para poder leer el número total de productos
+// que el usuario ha añadido. El contexto persiste en localStorage, por lo que
+// el contador se mantiene aunque el usuario cambie de página o recargue.
+import { CartContext } from "../context/CartContext";
 
 export const Navbar = () => {
   const { pathname } = useLocation();
@@ -8,6 +12,10 @@ export const Navbar = () => {
     pathname === "/login" || pathname === "/registrar" || pathname === "/perfil";
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  // Obtenemos 'count' desde el CartContext. 'count' es la suma de las
+  // cantidades de todos los items del carrito y se actualiza automáticamente
+  // cuando se añade/elimina un producto.
+  const { count } = useContext(CartContext);
 
   // Realizar búsqueda en tiempo real
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,9 +90,12 @@ export const Navbar = () => {
             {!hideControls && (
               <>
                   <Link to="/carrito" className="cart-btn" id="openCartModal" onClick={closeMobileMenu}>
-                    <i className="fa fa-shopping-cart"></i>
-                    Carrito (<span id="cart-count">0</span>)
-                  </Link>
+                  <i className="fa fa-shopping-cart"></i>
+                      Carrito (
+                        {/* Mostramos aquí el contador total de productos del carrito. */}
+                        <span id="cart-count">{count}</span>
+                      )
+                    </Link>
                 <div
                   id="cartSidebar"
                   className="offcanvas offcanvas-end"

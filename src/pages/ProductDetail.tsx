@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { products } from "../data/products";
 import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 export const ProductDetail = () => {
     const { id } = useParams<{ id: string }>();
@@ -53,23 +55,7 @@ export const ProductDetail = () => {
                         </div>
 
                         <div className="buy-cta mt-3">
-                            <div className="d-flex align-items-center gap-2 mb-2">
-                                <span className="small text-secondary">Cantidad</span>
-                                <div className="input-group" style={{ width: "140px" }}>
-                                    <button className="btn btn-outline-secondary" type="button">
-                                        -
-                                    </button>
-                                    <input type="number" className="form-control text-center" defaultValue={1} min={1} max={5} />
-                                    <button className="btn btn-outline-secondary" type="button">
-                                        +
-                                    </button>
-                                </div>
-                                <span className="small text-secondary">Máximo 5 unidades.</span>
-                            </div>
-
-                            <button className="btn btn-dark btn-lg w-50">
-                                <i className="fa fa-cart-plus me-2"></i> Agregar al Carro
-                            </button>
+                            <AddToCartButton product={product} />
                         </div>
                     </div>
                 </div>
@@ -90,3 +76,23 @@ export const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+function AddToCartButton({ product }: { product: any }) {
+    const { addItem } = useContext(CartContext);
+    const [qty, setQty] = useState(1);
+    // sync qty with any QuantityInput? Keep simple: small inline control
+    return (
+        <div>
+            <div className="d-flex align-items-center gap-2 mb-2">
+                <div className="input-group" style={{ width: "140px" }}>
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => setQty((s) => Math.max(1, s - 1))}>-</button>
+                    <input value={qty} onChange={(e) => setQty(Math.max(1, Number(e.target.value || 1)))} type="number" className="form-control text-center" min={1} max={5} />
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => setQty((s) => Math.min(5, s + 1))}>+</button>
+                </div>
+            </div>
+            <button className="btn btn-dark btn-lg w-50" onClick={() => { addItem({ id: product.id, title: product.title, price: product.price, imgSrc: product.imgSrc }, qty); alert('Producto añadido al carrito'); }}>
+                <i className="fa fa-cart-plus me-2"></i> Agregar al Carro
+            </button>
+        </div>
+    );
+}

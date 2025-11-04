@@ -216,6 +216,8 @@ export const Comunidad = () => {
             </ul>
           </div>
           <div className="col-md-4 d-flex align-items-center">
+            {/* Restauramos la imagen original aquí. El mapa grande irá en el
+                contenedor más abajo con id="map" (área de 400px). */}
             <img
               src="/img/jugaryaprender.png"
               alt="Consejos Gamer"
@@ -311,8 +313,22 @@ export const Comunidad = () => {
             borderRadius: "12px",
             border: "2px solid #39ff14",
             boxShadow: "0 0 16px #39ff14",
+            overflow: 'hidden'
           }}
-        ></div>
+        >
+          {/* Mapa embebido: iframe de Google Maps centrado en Santiago, Chile.
+              Cambia el parámetro q= en la URL por la ciudad o coordenadas
+              que prefieras. */}
+          <iframe
+            title="Mapa de Eventos Gamer"
+            src="https://maps.google.com/maps?q=Santiago%20Chile&z=12&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </section>
 
       <section className="container my-5">
