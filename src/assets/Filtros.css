@@ -13,7 +13,7 @@
 
 .filters-title {
   color: #1e90ff;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   text-transform: uppercase;
   margin-bottom: 20px;
   font-size: 1.2rem;
@@ -36,7 +36,7 @@
 
 .filter-group label {
   color: #1e90ff;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-weight: 500;
   margin-bottom: 8px;
   display: block;
@@ -113,7 +113,7 @@
   .filter-group {
     min-width: 100%;
   }
-  
+
   .filters-content {
     flex-direction: column;
     gap: 15px;

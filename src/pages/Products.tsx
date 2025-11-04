@@ -4,7 +4,8 @@ import { products } from "../data/products";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useMemo, useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import '../assets/Filtros.css';
+import "../assets/Filtros.css";
+import "../assets/Productos.css";
 
 export const Products = () => {
   const [searchParams] = useSearchParams();
@@ -19,25 +20,29 @@ export const Products = () => {
 
   // Obtener categorías únicas de los productos
   const categories = useMemo(() => {
-    const cats = new Set(products.map(p => p.category));
+    const cats = new Set(products.map((p) => p.category));
     return ["all", ...Array.from(cats)];
   }, []);
 
   // Obtener precio mínimo y máximo de los productos
-  const minPriceProductos = useMemo(() => 
-    Math.min(...products.map(p => p.price))
-  , []);
+  const minPriceProductos = useMemo(
+    () => Math.min(...products.map((p) => p.price)),
+    []
+  );
 
-  const maxPriceProductos = useMemo(() => 
-    Math.max(...products.map(p => p.price))
-  , []);
+  const maxPriceProductos = useMemo(
+    () => Math.max(...products.map((p) => p.price)),
+    []
+  );
 
   // Aplicar todos los filtros
   const filtered = useMemo(() => {
     return products
-      .filter(p => q ? p.title.toLowerCase().includes(q) : true)
-      .filter(p => selectedCategory === "all" ? true : p.category === selectedCategory)
-      .filter(p => p.price >= minPrice && p.price <= maxPrice);
+      .filter((p) => (q ? p.title.toLowerCase().includes(q) : true))
+      .filter((p) =>
+        selectedCategory === "all" ? true : p.category === selectedCategory
+      )
+      .filter((p) => p.price >= minPrice && p.price <= maxPrice);
   }, [q, selectedCategory, minPrice, maxPrice]);
 
   return (
@@ -120,7 +125,8 @@ export const Products = () => {
 
         {filtered.length === 0 && (
           <div className="alert alert-info">
-            <i className="fa fa-info-circle"></i> No se encontraron productos con los filtros seleccionados
+            <i className="fa fa-info-circle"></i> No se encontraron productos
+            con los filtros seleccionados
           </div>
         )}
         <section id="catalogo" className="row g-4">
@@ -144,10 +150,20 @@ export const Products = () => {
                     type="button"
                     className="agregarCarrito"
                     onClick={() => {
-                      addItem({ id: p.id, title: p.title, price: p.price, imgSrc: p.imgSrc }, 1);
-                      const cb = document.getElementById("toggle-menu") as HTMLInputElement | null;
+                      addItem(
+                        {
+                          id: p.id,
+                          title: p.title,
+                          price: p.price,
+                          imgSrc: p.imgSrc,
+                        },
+                        1
+                      );
+                      const cb = document.getElementById(
+                        "toggle-menu"
+                      ) as HTMLInputElement | null;
                       if (cb && cb.checked) cb.checked = false;
-                      alert('Producto añadido al carrito');
+                      alert("Producto añadido al carrito");
                     }}
                   >
                     Agregar al Carro
@@ -158,7 +174,9 @@ export const Products = () => {
                     className="btn-gamer-neon mt-2"
                     onClick={() => {
                       navigate(`/products/${p.id}`);
-                      const cb = document.getElementById("toggle-menu") as HTMLInputElement | null;
+                      const cb = document.getElementById(
+                        "toggle-menu"
+                      ) as HTMLInputElement | null;
                       if (cb && cb.checked) cb.checked = false;
                     }}
                   >
