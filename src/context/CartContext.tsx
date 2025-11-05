@@ -15,6 +15,7 @@ type CartContextType = {
   clearCart: () => void;
   count: number;
   total: number;
+  updateQuantity: (id: string, quantity: number) => void;
 };
 
 const STORAGE_KEY = "levelup_cart_v1";
@@ -26,6 +27,7 @@ export const CartContext = createContext<CartContextType>({
   clearCart: () => {},
   count: 0,
   total: 0,
+  updateQuantity: () => {},
 });
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -66,12 +68,19 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const clearCart = useCallback(() => setItems([]), []);
 
+  const updateQuantity = useCallback((id: string, quantity: number) => {
+    setItems((prev) =>
+      prev
+        .map((p) => (p.id === id ? { ...p, quantity: Math.max(1, Math.min(quantity, 99)) } : p))
+    );
+  }, []);
+
   const count = useMemo(() => items.reduce((s, i) => s + i.quantity, 0), [items]);
   const total = useMemo(() => items.reduce((s, i) => s + i.price * i.quantity, 0), [items]);
 
   const value = useMemo(
-    () => ({ items, addItem, removeItem, clearCart, count, total }),
-    [items, addItem, removeItem, clearCart, count, total]
+    () => ({ items, addItem, removeItem, clearCart, count, total, updateQuantity }),
+    [items, addItem, removeItem, clearCart, count, total, updateQuantity]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

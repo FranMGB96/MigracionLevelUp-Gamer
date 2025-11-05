@@ -1,14 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { useContext, useState, useEffect } from "react";
+import { CartContext, type CartItem } from "../context/CartContext";
 
 export const Carrito = () => {
   const { items, removeItem, total, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  // Manejador de pago: muestra mensaje de agradecimiento, vacía el carrito
-  // y redirige a la página principal. Usamos alert() para simplicidad; si
-  // quieres un toast más elegante, puedo reemplazarlo por uno.
   const handlePay = () => {
     if (items.length === 0) {
       alert("El carrito está vacío.");
@@ -16,7 +13,7 @@ export const Carrito = () => {
     }
     alert("Gracias por su compra");
     clearCart();
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -67,7 +64,12 @@ export const Carrito = () => {
                       </div>
                     </td>
                     <td>{new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(it.price)}</td>
-                    <td>{it.quantity}</td>
+
+                    {/* Aquí usamos el control de cantidad similar a AddToCartButton */}
+                    <td>
+                      <QuantityControl item={it} />
+                    </td>
+
                     <td>{new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(it.price * it.quantity)}</td>
                     <td>
                       <button className="btn-gamer-neon btn-sm" onClick={() => removeItem(it.id)}>
@@ -89,7 +91,7 @@ export const Carrito = () => {
               </tbody>
             </table>
           </div>
-            <div className="d-flex justify-content-end gap-3 mt-4">
+          <div className="d-flex justify-content-end gap-3 mt-4">
             <Link to="/" className="btn-gamer-neon" style={{ fontSize: '1.1rem', padding: '8px 22px' }}>
               Seguir Comprando
             </Link>
@@ -102,3 +104,46 @@ export const Carrito = () => {
     </main>
   );
 }
+
+/* Control de cantidad: botones + campo numérico (similar a AddToCartButton) */
+function QuantityControl({ item }: { item: CartItem }) {
+  const { updateQuantity } = useContext(CartContext);
+  const [qty, setQty] = useState<number>(item.quantity);
+
+  useEffect(() => {
+    setQty(item.quantity);
+  }, [item.quantity]);
+
+  const increment = () => {
+    const next = Math.min(5, qty + 1);
+    setQty(next);
+    updateQuantity(item.id, next);
+  };
+
+  const decrement = () => {
+    const next = Math.max(1, qty - 1);
+    setQty(next);
+    updateQuantity(item.id, next);
+  };
+
+  
+
+  return (
+    <div className="d-flex align-items-center gap-2">
+      <div className="input-group" style={{ width: 140 }}>
+        <button className="btn btn-outline-secondary" type="button" onClick={decrement}>-</button>
+        <input
+          value={qty}
+          onChange={(e) => setQty(Math.max(1, Number(e.target.value || 1)))}
+          type="number"
+          className="form-control text-center"
+          min={1}
+          max={99}
+        />
+        <button className="btn btn-outline-secondary" type="button" onClick={increment}>+</button>
+      </div>
+    </div>
+  );
+}
+
+export default Carrito;
